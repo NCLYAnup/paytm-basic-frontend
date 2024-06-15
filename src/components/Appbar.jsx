@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 export const Appbar = () => {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser]=useState([])
@@ -19,6 +20,7 @@ export const Appbar = () => {
         <div className="flex flex-col justify-center h-full ml-4">
             PayTM App
         </div>
+        <button className="justify-end bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 mx-2 my-2 mr-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out ml-auto" onClick={()=>{navigate("/")}}>Logout</button>
         <div className="flex">
             <div className="flex flex-col justify-center h-full mr-4">
                 Hello

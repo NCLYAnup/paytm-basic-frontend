@@ -3,23 +3,29 @@ import { Button } from "./Button"
 import axios from "axios";
 import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
-
+import Loader from "./Loader";
 
 export const Users = () => {
     // Replace with backend call
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
-   
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get("https://paytm-basic-backend-one.vercel.app/api/v1/user/bulk?filter=" + filter)
             .then(response => {
                 setUsers(response.data.user)
+                setLoading(false);
             })
     }, [filter])
     const token = localStorage.getItem('token'); // This should come from your authentication context or storage where the token is saved
   const decodedToken = jwtDecode(token);
   const currentUserId = decodedToken.userId;
+
+  if (loading) {
+    return <Loader />; // Show the loader while loading
+  }
+  
     return <>
         <div className="font-bold mt-6 text-lg">
             Users

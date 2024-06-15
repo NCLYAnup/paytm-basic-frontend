@@ -14,6 +14,8 @@ export function ProfileIcon() {
     })
     const [isEditable, setIsEditable] = useState(false);
     const [message, setMessage] =useState("");
+    
+
     useEffect(()=>{
         axios.get("https://paytm-basic-backend-one.vercel.app/api/v1/user/profile" ,
         {
@@ -22,10 +24,9 @@ export function ProfileIcon() {
            }
        }).then(response => {
                setUser(response.data.user)
+               
        }) 
     }, []);
-
-  
 
 
    const handleChange = (e) => {
